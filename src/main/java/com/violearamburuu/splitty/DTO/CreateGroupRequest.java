@@ -1,3 +1,3 @@
-package com.violearamburuu.splitty.services.DTO;
+package com.violearamburuu.splitty.DTO;
 
 public record CreateGroupRequest(String name, String creatorEmail) {}

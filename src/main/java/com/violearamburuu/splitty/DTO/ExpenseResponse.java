@@ -1,4 +1,4 @@
-package com.violearamburuu.splitty.services.DTO;
+package com.violearamburuu.splitty.DTO;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

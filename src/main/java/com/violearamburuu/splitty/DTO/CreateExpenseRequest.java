@@ -1,4 +1,4 @@
-package com.violearamburuu.splitty.services.DTO;
+package com.violearamburuu.splitty.DTO;
 
 import com.violearamburuu.splitty.model.ExpenseShare;
 import com.violearamburuu.splitty.model.User;

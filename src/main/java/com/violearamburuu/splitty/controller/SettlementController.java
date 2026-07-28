@@ -4,8 +4,8 @@
 import com.violearamburuu.splitty.model.Group;
 import com.violearamburuu.splitty.model.Settlement;
 import com.violearamburuu.splitty.model.User;
-import com.violearamburuu.splitty.services.DTO.RecordSettlementRequest;
-import com.violearamburuu.splitty.services.DTO.SettlementResponse;
+import com.violearamburuu.splitty.DTO.RecordSettlementRequest;
+import com.violearamburuu.splitty.DTO.SettlementResponse;
 import com.violearamburuu.splitty.services.GroupService;
 import com.violearamburuu.splitty.services.SettlementService;
 import com.violearamburuu.splitty.services.UserService;

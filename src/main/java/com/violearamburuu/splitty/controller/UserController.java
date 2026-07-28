@@ -1,8 +1,8 @@
 ﻿package com.violearamburuu.splitty.controller;
 
 import com.violearamburuu.splitty.model.User;
-import com.violearamburuu.splitty.services.DTO.CreateUserRequest;
-import com.violearamburuu.splitty.services.DTO.UserResponse;
+import com.violearamburuu.splitty.DTO.CreateUserRequest;
+import com.violearamburuu.splitty.DTO.UserResponse;
 import com.violearamburuu.splitty.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
