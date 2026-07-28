@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/expenses")
+@RequestMapping("/groups/{groupId}/expenses")
 public class ExpenseController {
     private final ExpenseService expenseService;
     private final UserService userService;
@@ -44,7 +44,7 @@ public class ExpenseController {
         return new ExpenseResponse(expense.getId(), expense.getAmount(), expense.getPaidBy().getId(), expense.getGroup().getId(), expense.getDescription(), expense.getDate());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping
     public List<ExpenseResponse> getExpensesByGroup(@PathVariable long groupId) {
         Group group = groupService.findGroupById(groupId);
         List<Expense> expenses = expenseService.getExpensesByGroup(group);

@@ -1,4 +1,4 @@
-﻿package com.violearamburuu.splitty.controller;
+package com.violearamburuu.splitty.controller;
 
 
 import com.violearamburuu.splitty.model.Group;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/settlements")
+@RequestMapping("/groups/{groupId}/settlements")
 public class SettlementController {
     private final SettlementService settlementService;
     private final UserService userService;
@@ -36,7 +36,7 @@ public class SettlementController {
         return new SettlementResponse(fromUser.getId(), toUser.getId(), group.getId(), settlement.getAmount(), settlement.getDate());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping
     public List<SettlementResponse> getSettlementsByGroup(@PathVariable long groupId) {
         Group group = groupService.findGroupById(groupId);
         List<Settlement> settlements = settlementService.listSettlementsByGroup(group);
@@ -47,7 +47,7 @@ public class SettlementController {
         return settlementResponses;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/groups/{userId}/settlements")
     public List<SettlementResponse> getSettlementsByUser(@PathVariable long userId) {
         User user = userService.findUserById(userId);
         List<Settlement> settlements = settlementService.listSettlementsByUser(user);
