@@ -12,6 +12,7 @@ public class Group {
     @GeneratedValue
     private @Getter long id;
     private @Getter
+    @Column(unique = true)
     @Setter String name;
 
     public Group(String name) {
