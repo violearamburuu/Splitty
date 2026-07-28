@@ -53,9 +53,9 @@ public class BalanceService {
             }
         }
 
-        while(!debtors.isEmpty() || !creditors.isEmpty()){
-            Map.Entry<User, BigDecimal> biggestDebtor = getBiggerDebtor(debtors);
-            Map.Entry<User, BigDecimal> biggestCreditor = getBiggestCreditor(creditors);
+        while(!debtors.isEmpty() && !creditors.isEmpty()){
+            Map.Entry<User, BigDecimal> biggestDebtor = getBiggerDebtorOrCreditor(debtors);
+            Map.Entry<User, BigDecimal> biggestCreditor = getBiggerDebtorOrCreditor(creditors);
             BigDecimal debt = biggestDebtor.getValue().abs();
             BigDecimal credit = biggestCreditor.getValue();
             BigDecimal amount = debt.compareTo(credit) <= 0 ? debt : credit;
@@ -72,6 +72,19 @@ public class BalanceService {
         }
 
         return transfers;
+    }
+
+    public Map.Entry<User, BigDecimal> getBiggerDebtorOrCreditor(Map<User, BigDecimal> debtorsOrCreditors){
+        BigDecimal maxMagnitude = BigDecimal.ZERO;
+        User user = null;
+        for(Map.Entry<User, BigDecimal> balance : debtorsOrCreditors.entrySet()){
+            if(balance.getValue().abs().compareTo(maxMagnitude) > 0){
+                maxMagnitude = balance.getValue().abs();
+                user = balance.getKey();
+            }
+        }
+        if(user == null) throw new RuntimeException("No users found.");
+        return Map.entry(user, debtorsOrCreditors.get(user));
     }
 
 }
