@@ -1,0 +1,1 @@
+﻿![CI](https://github.com/violearamburuu/Splitty/actions/workflows/ci.yml/badge.svg)
