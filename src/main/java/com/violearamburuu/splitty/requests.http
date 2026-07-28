@@ -55,7 +55,7 @@ GET http://localhost:8080/groups/152/balances
 GET http://localhost:8080/groups/152/settle
 
 ### Register
-POST http://localhost:8080/auth/register
+POST http://localhost:8081/auth/register
 Content-Type: application/json
 
 { "name": "Ana", "email": "ana@test.com", "password": "pass123" }

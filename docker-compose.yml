@@ -1,0 +1,26 @@
+﻿services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: splitty
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - splitty-data:/var/lib/postgresql
+
+  app:
+    build: .
+    depends_on:
+      - db
+    environment:
+      DB_USERNAME: postgres
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/splitty
+    ports:
+      - "8081:8080"
+
+volumes:
+  splitty-data:
