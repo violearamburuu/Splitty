@@ -1,4 +1,4 @@
-﻿package com.violearamburuu.splitty.controller;
+package com.violearamburuu.splitty.controller;
 
 import com.violearamburuu.splitty.model.Group;
 import com.violearamburuu.splitty.model.User;
