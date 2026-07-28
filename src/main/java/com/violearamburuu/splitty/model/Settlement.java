@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "settlements")
@@ -20,9 +20,9 @@ public class Settlement {
     @ManyToOne
     private @Getter @Setter Group group;
     private @Getter @Setter BigDecimal amount;
-    private @Getter @Setter Date date;
+    private @Getter @Setter LocalDate date;
 
-    public Settlement(User fromUser, User toUser, Group group, BigDecimal amount, Date date){
+    public Settlement(User fromUser, User toUser, Group group, BigDecimal amount, LocalDate date){
         this.fromUser = fromUser;
         this.toUser = toUser;
         this.group = group;
