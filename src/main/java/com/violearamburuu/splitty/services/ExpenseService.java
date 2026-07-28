@@ -45,4 +45,9 @@ public class ExpenseService {
         }
         return newExpense;
     }
+
+    public List<Expense> getExpensesByGroup(Group group){
+        expenseRepository.findById(group.getId()).orElseThrow(() -> new RuntimeException("This group does not exist."));
+        return expenseRepository.findAllByGroup(group);
+    }
 }
