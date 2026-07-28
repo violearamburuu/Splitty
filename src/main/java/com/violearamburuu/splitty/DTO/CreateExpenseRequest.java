@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 public record CreateExpenseRequest(
-        long paidById, long groupId, BigDecimal amount,
+        long paidById, BigDecimal amount,
         LocalDate date, String description,
         Map<Long, BigDecimal> shares
 ) {}

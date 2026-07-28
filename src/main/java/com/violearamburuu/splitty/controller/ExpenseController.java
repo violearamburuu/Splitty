@@ -30,9 +30,9 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ExpenseResponse createExpense(@RequestBody CreateExpenseRequest request){
+    public ExpenseResponse createExpense(@RequestBody CreateExpenseRequest request, @PathVariable long groupId){
         User paidBy = userService.findUserById(request.paidById());
-        Group group = groupService.findGroupById(request.groupId());
+        Group group = groupService.findGroupById(groupId);
 
         Map<User, BigDecimal> shares = new HashMap<>();
         for (Map.Entry<Long, BigDecimal> entry : request.shares().entrySet()) {
