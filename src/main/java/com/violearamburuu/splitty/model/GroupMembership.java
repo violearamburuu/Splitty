@@ -1,4 +1,4 @@
-﻿package com.violearamburuu.splitty.model;
+package com.violearamburuu.splitty.model;
 
 import jakarta.persistence.*;
 import lombok.*;
