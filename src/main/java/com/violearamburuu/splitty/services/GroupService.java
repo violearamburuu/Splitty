@@ -1,4 +1,4 @@
-﻿package com.violearamburuu.splitty.services;
+package com.violearamburuu.splitty.services;
 
 import com.violearamburuu.splitty.model.*;
 import com.violearamburuu.splitty.repository.GroupMembershipRepository;

@@ -1,4 +1,4 @@
-﻿package com.violearamburuu.splitty.config;
+package com.violearamburuu.splitty.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
