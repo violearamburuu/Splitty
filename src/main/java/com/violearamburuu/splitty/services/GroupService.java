@@ -18,9 +18,6 @@ public class GroupService {
     }
 
     public Group createGroup(String name, User owner){
-        if(groupRepository.findByName(name).isPresent()) {
-            throw new RuntimeException("This name is already in use");
-        }
         Group group = new Group(name);
         GroupMembership membership = new GroupMembership(owner, group, GroupRole.OWNER);
 
