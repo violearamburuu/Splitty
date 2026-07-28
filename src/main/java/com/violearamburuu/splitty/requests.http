@@ -22,12 +22,10 @@ Content-Type: application/json
 
 ### Create a group (Ana is creator)
 POST http://localhost:8080/groups
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmFAdGVzdC5jb20iLCJpYXQiOjE3ODUyNzU4NjUsImV4cCI6MTc4NTM2MjI2NX0.wOhNOp3974LvwkYY20JBFqNEL_g021BAj4E9j820qcI
 Content-Type: application/json
 
-{
-  "name": "Trip",
-  "creatorEmail": "ana@test.com"
-}
+{ "name": "Trip", "creatorEmail": "ana@test.com" }
 
 ### Add Beto to group 1 (Ana is current user / owner)
 POST http://localhost:8080/groups/152/members
@@ -55,3 +53,19 @@ GET http://localhost:8080/groups/152/balances
 
 ### Get settle suggestion
 GET http://localhost:8080/groups/152/settle
+
+### Register
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{ "name": "Ana", "email": "ana@test.com", "password": "pass123" }
+
+### Login
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{ "email": "ana@test.com", "password": "pass123" }
+
+###
+GET http://localhost:8080/groups/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmFAdGVzdC5jb20iLCJpYXQiOjE3ODUyNzU4NjUsImV4cCI6MTc4NTM2MjI2NX0.wOhNOp3974LvwkYY20JBFqNEL_g021BAj4E9j820qcI

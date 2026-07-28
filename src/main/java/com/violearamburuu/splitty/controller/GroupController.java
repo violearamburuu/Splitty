@@ -1,5 +1,7 @@
 package com.violearamburuu.splitty.controller;
 
+import com.violearamburuu.splitty.DTO.GroupMembershipResponse;
+import com.violearamburuu.splitty.DTO.GroupResponse;
 import com.violearamburuu.splitty.model.Group;
 import com.violearamburuu.splitty.model.GroupMembership;
 import com.violearamburuu.splitty.model.User;
@@ -8,6 +10,8 @@ import com.violearamburuu.splitty.DTO.CreateGroupRequest;
 import com.violearamburuu.splitty.services.GroupService;
 import com.violearamburuu.splitty.services.UserService;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/groups")
@@ -22,9 +26,10 @@ public class GroupController {
     }
 
     @PostMapping
-    public Group createGroup(@RequestBody CreateGroupRequest request) {
-        User user = userService.findUserByEmail(request.creatorEmail());
-        return groupService.createGroup(request.name(), user);
+    public GroupResponse createGroup(@RequestBody CreateGroupRequest request, Principal principal) {
+        User creator = userService.findUserByEmail(principal.getName());
+        Group group = groupService.createGroup(request.name(), creator);
+        return new GroupResponse(group.getName());
     }
 
     @GetMapping("/{id}")
@@ -33,11 +38,12 @@ public class GroupController {
     }
 
     @PostMapping("/{id}/members")
-    public GroupMembership addMember(@PathVariable long id, @RequestBody AddMemberRequest request) {
+    public GroupMembershipResponse addMember(@PathVariable long id, @RequestBody AddMemberRequest request, Principal principal) {
         Group group = groupService.findGroupById(id);
-        User currentUser = userService.findUserById(request.currentUserId());
+        User currentUser = userService.findUserByEmail(principal.getName());
         User newMember = userService.findUserById(request.newMemberId());
-        return groupService.addMemberToGroup(currentUser, newMember, group);
+        GroupMembership membership = groupService.addMemberToGroup(currentUser, newMember, group);
+        return new GroupMembershipResponse(newMember.getId());
     }
 
 }
