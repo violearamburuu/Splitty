@@ -1,4 +1,4 @@
-﻿package com.violearamburuu.splitty.repository;
+package com.violearamburuu.splitty.repository;
 
 import com.violearamburuu.splitty.model.*;
 
@@ -7,7 +7,7 @@ import java.util.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GroupMembershipRepository extends JpaRepository<GroupMembership, Long> {
-    List<User> findAllMemberFromGroup(Group group);
-    Optional<GroupRole> findRoleOfUser(User user);
+    List<GroupMembership> findByGroup(Group group);
+    Optional<GroupMembership> findByUserAndGroup(User user, Group group);
 
 }

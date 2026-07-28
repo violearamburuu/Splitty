@@ -1,4 +1,4 @@
-﻿package com.violearamburuu.splitty.repository;
+package com.violearamburuu.splitty.repository;
 
 import com.violearamburuu.splitty.model.*;
 import org.springframework.data.jpa.repository.JpaRepository;
