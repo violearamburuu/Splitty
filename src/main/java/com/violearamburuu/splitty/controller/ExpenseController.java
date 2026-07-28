@@ -53,5 +53,6 @@ public class ExpenseController {
         for(Expense expense : expenses){
             expenseResponses.add(new ExpenseResponse(expense.getId(), expense.getAmount(), expense.getPaidBy().getId(), expense.getGroup().getId(), expense.getDescription(), expense.getDate()));
         }
+        return expenseResponses;
     }
 }
