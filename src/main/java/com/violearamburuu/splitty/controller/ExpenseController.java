@@ -11,6 +11,7 @@ import com.violearamburuu.splitty.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,8 +31,8 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ExpenseResponse createExpense(@RequestBody CreateExpenseRequest request, @PathVariable long groupId){
-        User paidBy = userService.findUserById(request.paidById());
+    public ExpenseResponse createExpense(@PathVariable long groupId, @RequestBody CreateExpenseRequest request, Principal principal) {
+        User paidBy = userService.findUserByEmail(principal.getName());
         Group group = groupService.findGroupById(groupId);
 
         Map<User, BigDecimal> shares = new HashMap<>();

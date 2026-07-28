@@ -11,6 +11,7 @@ import com.violearamburuu.splitty.services.SettlementService;
 import com.violearamburuu.splitty.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,11 +29,13 @@ public class SettlementController {
     }
 
     @PostMapping
-    public SettlementResponse recordSettlement(@RequestBody RecordSettlementRequest request) {
-        User fromUser = userService.findUserById(request.fromUserId());
+    public SettlementResponse recordSettlement(@PathVariable long groupId, @RequestBody RecordSettlementRequest request, Principal principal) {
+        User fromUser = userService.findUserByEmail(principal.getName());
         User toUser = userService.findUserById(request.toUserId());
-        Group group = groupService.findGroupById(request.groupId());
+        Group group = groupService.findGroupById(groupId);
+
         Settlement settlement = settlementService.recordSettlement(fromUser, toUser, group, request.amount(), request.date());
+
         return new SettlementResponse(fromUser.getId(), toUser.getId(), group.getId(), settlement.getAmount(), settlement.getDate());
     }
 
