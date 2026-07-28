@@ -5,16 +5,16 @@ import com.violearamburuu.splitty.model.Group;
 import com.violearamburuu.splitty.model.User;
 import com.violearamburuu.splitty.services.DTO.CreateExpenseRequest;
 import com.violearamburuu.splitty.services.DTO.ExpenseResponse;
+import com.violearamburuu.splitty.services.DTO.SettlementResponse;
 import com.violearamburuu.splitty.services.ExpenseService;
 import com.violearamburuu.splitty.services.GroupService;
 import com.violearamburuu.splitty.services.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -45,5 +45,13 @@ public class ExpenseController {
         return new ExpenseResponse(expense.getId(), expense.getAmount(), expense.getPaidBy().getId(), expense.getGroup().getId(), expense.getDescription(), expense.getDate());
     }
 
-
+    @GetMapping("/{id}")
+    public List<ExpenseResponse> getExpensesByGroup(@PathVariable long groupId) {
+        Group group = groupService.findGroupById(groupId);
+        List<Expense> expenses = expenseService.getExpensesByGroup(group);
+        List<ExpenseResponse> expenseResponses = new ArrayList<ExpenseResponse>();
+        for(Expense expense : expenses){
+            expenseResponses.add(new ExpenseResponse(expense.getId(), expense.getAmount(), expense.getPaidBy().getId(), expense.getGroup().getId(), expense.getDescription(), expense.getDate()));
+        }
+    }
 }
