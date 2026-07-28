@@ -27,6 +27,10 @@ public class GroupService {
         return group;
     }
 
+    public Group findGroupById(long id){
+        return groupRepository.findById(id).orElseThrow(() -> new RuntimeException("This group does not exist."));
+    }
+
     public Group findGroupByName(String name){
         return groupRepository.findByName(name).orElseThrow(() -> new RuntimeException("This group doesn't exist"));
     }
