@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/groups")
+@RequestMapping("/expenses")
 public class ExpenseController {
     private final ExpenseService expenseService;
     private final UserService userService;
